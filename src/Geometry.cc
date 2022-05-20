@@ -101,6 +101,38 @@ Geometry::Geometry(G4String buildfile){
   	config >> value >> unit;
   	IPa4_z = value*G4UnitDefinition::GetValueOf(unit);
       }
+      else if(variable == "Epaisseur_tantale1_2"){
+  	config >> value >> unit;
+  	Epaisseur_tantale1_2 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Epaisseur_tantale2_3"){
+  	config >> value >> unit;
+  	Epaisseur_tantale2_3 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Epaisseur_tantale3_4"){
+  	config >> value >> unit;
+  	Epaisseur_tantale3_4 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Epaisseur_tantale4_5"){
+  	config >> value >> unit;
+  	Epaisseur_tantale4_5 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Epaisseur_tantale5_6"){
+  	config >> value >> unit;
+  	Epaisseur_tantale5_6 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Epaisseur_tantale6_7"){
+  	config >> value >> unit;
+  	Epaisseur_tantale6_7 = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Labs"){
+  	config >> value >> unit;
+  	Labs = value*G4UnitDefinition::GetValueOf(unit);
+      }
+      else if(variable == "Coef_PSL"){
+  	config >> value >> unit;
+  	Coef_PSL = value;
+      }
     }
   }
   config.close();
@@ -113,11 +145,19 @@ Geometry::Geometry(G4String buildfile){
     << "\n Disque_alu_epaisseur = " << Disque_alu_epaisseur
     << "\n Bloc_mylar_hauteur = " << Bloc_mylar_hauteur
     << "\n Cylindre_tantale_hauteur = " << Cylindre_tantale_hauteur
-    << "\n Nombre IP = " << Nombre_IP-1
+    << "\n Nombre IP = " << Nombre_IP
     << "\n IPa1_z = " << IPa1_z
     << "\n IPa2_z = " << IPa2_z
     << "\n IPa3_z = " << IPa3_z
     << "\n IPa4_z = " << IPa4_z
+    << "\n Epaisseur tantale 1->2 = " << Epaisseur_tantale1_2
+    << "\n Epaisseur tantale 2->3 = " << Epaisseur_tantale2_3
+    << "\n Epaisseur tantale 3->4 = " << Epaisseur_tantale3_4
+    << "\n Epaisseur tantale 4->5 = " << Epaisseur_tantale4_5
+    << "\n Epaisseur tantale 5->6 = " << Epaisseur_tantale5_6
+    << "\n Epaisseur tantale 6->7 = " << Epaisseur_tantale6_7
+    << "\n Labs = " << Labs
+    << "\n Coef PSL = " << Coef_PSL
 
     << "\n " << G4endl;
 
@@ -131,34 +171,72 @@ Geometry::~Geometry(){
 }
 
 
-G4LogicalVolume *Geometry::GetTantale2mm(){
+G4LogicalVolume *Geometry::GetTantale1_2(){
 
   Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
 
-  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur,1.*mm,0.,360.*deg);
-  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_2mm");
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale1_2/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_1_2");
 
   return LogicalVolume;
 }
 
 
-G4LogicalVolume *Geometry::GetTantale4mm(){
+G4LogicalVolume *Geometry::GetTantale2_3(){
 
   Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
 
-  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur,2.*mm,0.,360.*deg);
-  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_4mm");
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale2_3/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_2_3");
+
+  return LogicalVolume;
+}
+
+G4LogicalVolume *Geometry::GetTantale3_4(){
+
+  Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
+
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale3_4/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_3_4");
 
   return LogicalVolume;
 }
 
 
-G4LogicalVolume *Geometry::GetTantale28mm(){
+G4LogicalVolume *Geometry::GetTantale4_5(){
 
   Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
 
-  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur,14.*mm,0.,360.*deg);
-  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_28mm");
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale4_5/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_4_5");
+
+  return LogicalVolume;
+}
+
+
+G4LogicalVolume *Geometry::GetTantale5_6(){
+
+  Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
+
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale5_6/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_5_6");
+
+  return LogicalVolume;
+}
+
+
+G4LogicalVolume *Geometry::GetTantale6_7(){
+
+  Material = scintProp->GetMaterial("Tantale");
+  //Material = scintProp->GetMaterial("Aluminium");
+
+  G4VSolid* solid = new G4Tubs("solid",0.,Rayon_cylindre_interieur, (Epaisseur_tantale6_7/2)*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Ta_6_7");
 
   return LogicalVolume;
 }
@@ -232,7 +310,7 @@ G4LogicalVolume *Geometry::GetCylindreTantale(){
 
 G4LogicalVolume *Geometry::GetDisqueAlu(){
 
-  Material = scintProp->GetMaterial("Tantale");
+  Material = scintProp->GetMaterial("Aluminium");
 
   G4VSolid* solid = new G4Tubs("Disque_Alu",0., Rayon_cylindre_exterieur, Disque_alu_epaisseur/2.,0.,360.*deg);
   LogicalVolume = new G4LogicalVolume(solid, Material,"Cylindre_Tantale");

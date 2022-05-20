@@ -58,9 +58,12 @@ private:
 
   // Logical Volumes
   G4LogicalVolume *LogicalWorld;
-  G4LogicalVolume *LogicalTantale2mm;
-  G4LogicalVolume *LogicalTantale4mm;
-  G4LogicalVolume *LogicalTantale28mm;
+  G4LogicalVolume *LogicalTantale1_2;
+  G4LogicalVolume *LogicalTantale2_3;
+  G4LogicalVolume *LogicalTantale3_4;
+  G4LogicalVolume *LogicalTantale4_5;
+  G4LogicalVolume *LogicalTantale5_6;
+  G4LogicalVolume *LogicalTantale6_7;
   G4LogicalVolume *LogicalStackIP1;
   G4LogicalVolume *LogicalStackIP2;
   G4LogicalVolume *LogicalStackIP3;
@@ -95,6 +98,12 @@ private:
   G4double IPa2_z;
   G4double IPa3_z;
   G4double IPa4_z;
+  G4double Epaisseur_tantale1_2;
+  G4double Epaisseur_tantale2_3;
+  G4double Epaisseur_tantale3_4;
+  G4double Epaisseur_tantale4_5;
+  G4double Epaisseur_tantale5_6;
+  G4double Epaisseur_tantale6_7;
 
 
 };

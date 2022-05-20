@@ -37,6 +37,14 @@ private:
   int PreviousTrack;
   double Length_Track;
   double Total_Length_Track;
+  G4double PosZ_Sensitive_IP1;
+  G4double PosZ_Sensitive_IP2;
+  G4double PosZ_Sensitive_IP3;
+  G4double PosZ_Sensitive_IP4;
+  G4double PosZ_Sensitive_IP5;
+  G4double PosZ_Sensitive_IP6;
+  G4double PosZ_Sensitive_IP7;
+  G4double Labs;
 
 
 };

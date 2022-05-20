@@ -12,16 +12,29 @@
 ######################################################
 /gps/number 1
 /gps/particle e-
+#/gps/ene/type Brem
+#/gps/ene/temp 116045250061.657 K
+#/gps/ene/min 100 keV
+#/gps/ene/max 30000 keV
+
 /gps/pos/type Point
 /gps/pos/centre 0.0 0.0 -100.0 mm
-#/gps/energy 13000 keV
 /gps/direction 0.0 0.0 1.0
-#/gps/ang/type iso
+#/gps/energy 40 keV
+#/gps/ang/type cos
+#/gps/ang/rot1 -1 0 0
+#/gps/ang/maxtheta 0.09 rad
 
-/gps/ene/type Arb
-/gps/hist/type arb
-/gps/hist/file Spectre_scan08_2.txt
-/gps/hist/inter Lin
+/gps/ene/type Exp
+/gps/ene/min 1. keV
+/gps/ene/max 100. MeV
+/gps/ene/ezero 2.3 MeV
+
+
+#/gps/ene/type Arb
+#/gps/hist/type arb
+#/gps/hist/file Spectre_scan08_1.txt
+#/gps/hist/inter Lin
 
 #/gps/particle ion
 #/gps/ion 11 22 0 0  

@@ -40,47 +40,93 @@ void ENLCEDRICSimEventAction::BeginOfEventAction(const G4Event* evt){
   Statistics.IncidentE =0;
   Statistics.IncidentE_Elec_Stack1 = 0;
   Statistics.DepositE_Elec_Stack1 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack1 = 0;
+  Statistics.X_Position_Elec_Stack1 = 0;
+  Statistics.Y_Position_Elec_Stack1 = 0;
   Statistics.IncidentE_Gamma_Stack1.clear();
   Statistics.DepositE_Gamma_Stack1 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack1 = 0;
+  Statistics.X_Position_Gamma_Stack1 = 0;
+  Statistics.Y_Position_Gamma_Stack1 = 0;
   Statistics.IncidentE_Elec_Stack2 = 0;
   Statistics.DepositE_Elec_Stack2 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack2 = 0;
+  Statistics.X_Position_Elec_Stack2 = 0;
+  Statistics.Y_Position_Elec_Stack2 = 0;
   Statistics.IncidentE_Gamma_Stack2.clear();
   Statistics.DepositE_Gamma_Stack2 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack2 = 0;
+  Statistics.X_Position_Gamma_Stack2 = 0;
+  Statistics.Y_Position_Gamma_Stack2 = 0;
   Statistics.IncidentE_Elec_Stack3 = 0;
   Statistics.DepositE_Elec_Stack3 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack3 = 0;
+  Statistics.X_Position_Elec_Stack3 = 0;
+  Statistics.Y_Position_Elec_Stack3 = 0;
   Statistics.IncidentE_Gamma_Stack3.clear();
   Statistics.DepositE_Gamma_Stack3 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack3 = 0;
+  Statistics.X_Position_Gamma_Stack3 = 0;
+  Statistics.Y_Position_Gamma_Stack3 = 0;
   Statistics.IncidentE_Elec_Stack4 = 0;
   Statistics.DepositE_Elec_Stack4 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack4 = 0;
+  Statistics.X_Position_Elec_Stack4 = 0;
+  Statistics.Y_Position_Elec_Stack4 = 0;
   Statistics.IncidentE_Gamma_Stack4.clear();
   Statistics.DepositE_Gamma_Stack4 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack4 = 0;
+  Statistics.X_Position_Gamma_Stack4 = 0;
+  Statistics.Y_Position_Gamma_Stack4 = 0;
   Statistics.IncidentE_Elec_Stack5 = 0;
   Statistics.DepositE_Elec_Stack5 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack5 = 0;
+  Statistics.X_Position_Elec_Stack5 = 0;
+  Statistics.Y_Position_Elec_Stack5 = 0;
   Statistics.IncidentE_Gamma_Stack5.clear();
   Statistics.DepositE_Gamma_Stack5 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack5 = 0;
+  Statistics.X_Position_Gamma_Stack5 = 0;
+  Statistics.Y_Position_Gamma_Stack5 = 0;
   Statistics.IncidentE_Elec_Stack6 = 0;
   Statistics.DepositE_Elec_Stack6 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack6 = 0;
+  Statistics.X_Position_Elec_Stack6 = 0;
+  Statistics.Y_Position_Elec_Stack6 = 0;
   Statistics.IncidentE_Gamma_Stack6.clear();
   Statistics.DepositE_Gamma_Stack6 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack6 = 0;
+  Statistics.X_Position_Gamma_Stack6 = 0;
+  Statistics.Y_Position_Gamma_Stack6 = 0;
   Statistics.IncidentE_Elec_Stack7 = 0;
   Statistics.DepositE_Elec_Stack7 = 0;
+  Statistics.EffectiveDepositE_Elec_Stack7 = 0;
+  Statistics.X_Position_Elec_Stack7 = 0;
+  Statistics.Y_Position_Elec_Stack7 = 0;
   Statistics.IncidentE_Gamma_Stack7.clear();
   Statistics.DepositE_Gamma_Stack7 =0;
+  Statistics.EffectiveDepositE_Gamma_Stack7 = 0;
+  Statistics.X_Position_Gamma_Stack7 = 0;
+  Statistics.Y_Position_Gamma_Stack7 = 0;
+
+  flag_good_event=false;
 
   for(G4int i = 0; i<10;i++){
     electron_flag_incident[i]=false;
+    electron_flag_position[i] = false;
+    gamma_flag_position[i] = false;
     IncidentE_Elec_Stack[i] =0;
     DepositE_Elec_Stack[i] =0;
     DepositE_Gamma_Stack[i] =0;
   }
 
+TrackID.clear();
 
 }
 
-void ENLCEDRICSimEventAction::SetStepParams(G4int num_IP,G4int m_ID,G4double m_Temps,G4String m_PartName){
-  ID[num_IP] = m_ID;
-  Temps[num_IP] = m_Temps;
-  PartName[num_IP] = m_PartName;
+void ENLCEDRICSimEventAction::SetTrackingID(G4int Track_ID, G4String PartName){
+  TrackID.push_back(Track_ID);
+  ParticuleName = PartName;
 }
 
 // Get the number of stored trajectories and calculate the statistics
@@ -89,23 +135,12 @@ void ENLCEDRICSimEventAction::EndOfEventAction(const G4Event* evt){
 
   ENLCEDRICSimRunAction *runac = (ENLCEDRICSimRunAction*)(G4RunManager::GetRunManager()->GetUserRunAction());
 
-  Statistics.IncidentE_Elec_Stack1 = IncidentE_Elec_Stack[0];
-  Statistics.IncidentE_Elec_Stack2 = IncidentE_Elec_Stack[1];
-  Statistics.IncidentE_Elec_Stack3 = IncidentE_Elec_Stack[2];
-  Statistics.IncidentE_Elec_Stack4 = IncidentE_Elec_Stack[3];
-  Statistics.IncidentE_Elec_Stack5 = IncidentE_Elec_Stack[4];
-  Statistics.IncidentE_Elec_Stack6 = IncidentE_Elec_Stack[5];
-  Statistics.IncidentE_Elec_Stack7 = IncidentE_Elec_Stack[6];
+  float Energie=0;
+  for(G4int i = 0; i<10;i++){
+    Energie+=DepositE_Elec_Stack[i];
+    Energie+=DepositE_Gamma_Stack[i];
+  }
 
-  Statistics.DepositE_Elec_Stack1 = DepositE_Elec_Stack[0];
-  Statistics.DepositE_Elec_Stack2 = DepositE_Elec_Stack[1];
-  Statistics.DepositE_Elec_Stack3 = DepositE_Elec_Stack[2];
-  Statistics.DepositE_Elec_Stack4 = DepositE_Elec_Stack[3];
-  Statistics.DepositE_Elec_Stack5 = DepositE_Elec_Stack[4];
-  Statistics.DepositE_Elec_Stack6 = DepositE_Elec_Stack[5];
-  Statistics.DepositE_Elec_Stack7 = DepositE_Elec_Stack[6];
-
-  
-
-  runac->UpdateStatistics(Statistics);
+    //if(flag_good_event==true)
+    runac->UpdateStatistics(Statistics);
 }

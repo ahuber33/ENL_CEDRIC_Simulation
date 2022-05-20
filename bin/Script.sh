@@ -2,11 +2,11 @@
 
 
 echo "Début de traitement"
-myArr=("10" "11" "12" "14" "16" "17" "18" "19" "20" "25" "30" "40" "50")
+myArr=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
 
 for idx in ${!myArr[*]}
 do
-    while [[ $(pgrep -x ENLegnSim | wc -l) -gt 4 ]]
+    while [[ $(pgrep -x ENLCEDRICSim | wc -l) -gt 4 ]]
     do
 	sleep 10
     done
@@ -20,7 +20,8 @@ do
         sed -e "s/%energy/$value/g" base_$idx_fichier_bis.mac > base_$idx_fichier.mac
         # Suppression fichier temporaire
         rm base_$idx_fichier_bis.mac
-	./ENLegnSim Section_efficace_gn_Tungstene_${myArr[$idx]}MeV 10000000 base_$idx_fichier.mac &
+	./ENLCEDRICSim Exp_${myArr[$idx]}MeV 100000000 base_$idx_fichier.mac &
+	#./ENLCEDRICSim Exp_${myArr[$idx]}MeV_100M 100000000 vrml.mac &
 	sleep 5
 done
 echo "Fin de traitement"

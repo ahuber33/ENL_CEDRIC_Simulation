@@ -13,7 +13,7 @@
 #include "G4LogicalSkinSurface.hh"
 #include "CLHEP/Units/SystemOfUnits.h"
 
-class ENLOpticalSimMaterials;
+class ENLCEDRICSimMaterials;
 class Geometry
 
 {
@@ -26,9 +26,12 @@ public:
 
 public:
 
-  G4LogicalVolume *GetTantale2mm();
-  G4LogicalVolume *GetTantale4mm();
-  G4LogicalVolume *GetTantale28mm();
+  G4LogicalVolume *GetTantale1_2();
+  G4LogicalVolume *GetTantale2_3();
+  G4LogicalVolume *GetTantale3_4();
+  G4LogicalVolume *GetTantale4_5();
+  G4LogicalVolume *GetTantale5_6();
+  G4LogicalVolume *GetTantale6_7();
   G4LogicalVolume *GetStackIP1();
   G4LogicalVolume *GetStackIP2();
   G4LogicalVolume *GetStackIP3();
@@ -48,6 +51,14 @@ public:
   G4double GetIPa2z(){return IPa2_z;}
   G4double GetIPa3z(){return IPa3_z;}
   G4double GetIPa4z(){return IPa4_z;}
+  G4double GetEpaisseurTantale12(){return Epaisseur_tantale1_2;}
+  G4double GetEpaisseurTantale23(){return Epaisseur_tantale2_3;}
+  G4double GetEpaisseurTantale34(){return Epaisseur_tantale3_4;}
+  G4double GetEpaisseurTantale45(){return Epaisseur_tantale4_5;}
+  G4double GetEpaisseurTantale56(){return Epaisseur_tantale5_6;}
+  G4double GetEpaisseurTantale67(){return Epaisseur_tantale6_7;}
+  G4double GetLabs(){return Labs;}
+  G4double GetCoefPSL(){return Coef_PSL;}
 
 
 private:
@@ -76,6 +87,14 @@ private:
   G4double IPa2_z;
   G4double IPa3_z;
   G4double IPa4_z;
+  G4double Epaisseur_tantale1_2;
+  G4double Epaisseur_tantale2_3;
+  G4double Epaisseur_tantale3_4;
+  G4double Epaisseur_tantale4_5;
+  G4double Epaisseur_tantale5_6;
+  G4double Epaisseur_tantale6_7;
+  G4double Labs;
+  G4double Coef_PSL;
 
   // Other
   G4VisAttributes *clear;

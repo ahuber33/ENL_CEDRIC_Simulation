@@ -22,4 +22,4 @@
 /gps/ene/type Exp
 /gps/ene/min 10 keV
 /gps/ene/max 100. MeV
-/gps/ene/ezero %energy MeV
+/gps/ene/ezero 9 MeV

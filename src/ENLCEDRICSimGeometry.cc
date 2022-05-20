@@ -159,6 +159,12 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
   IPa2_z = Geom->GetIPa2z();
   IPa3_z = Geom->GetIPa3z();
   IPa4_z = Geom->GetIPa4z();
+  Epaisseur_tantale1_2 = Geom->GetEpaisseurTantale12();
+  Epaisseur_tantale2_3 = Geom->GetEpaisseurTantale23();
+  Epaisseur_tantale3_4 = Geom->GetEpaisseurTantale34();
+  Epaisseur_tantale4_5 = Geom->GetEpaisseurTantale45();
+  Epaisseur_tantale5_6 = Geom->GetEpaisseurTantale56();
+  Epaisseur_tantale6_7 = Geom->GetEpaisseurTantale67();
   G4double epaisseur_IP = IPa1_z + IPa2_z + IPa3_z + IPa4_z;
   G4double  distance_au_centre = 0;
   Nombre_IP = Geom->GetNombreIP();
@@ -182,9 +188,12 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
   // Build scint et wrapping volumes*
   //*********************** *********
   //Simply calls functions from Scintillator() class
-  LogicalTantale2mm = Geom->GetTantale2mm();
-  LogicalTantale4mm = Geom->GetTantale4mm();
-  LogicalTantale28mm = Geom->GetTantale28mm();
+  LogicalTantale1_2 = Geom->GetTantale1_2();
+  LogicalTantale2_3 = Geom->GetTantale2_3();
+  LogicalTantale3_4 = Geom->GetTantale3_4();
+  LogicalTantale4_5 = Geom->GetTantale4_5();
+  LogicalTantale5_6 = Geom->GetTantale5_6();
+  LogicalTantale6_7 = Geom->GetTantale6_7();
   LogicalStackIP1 = Geom->GetStackIP1();
   LogicalStackIP2 = Geom->GetStackIP2();
   LogicalStackIP3 = Geom->GetStackIP3();
@@ -196,9 +205,12 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
 
 
   // Set colors of various block materials
-  LogicalTantale2mm->SetVisAttributes(blue);
-  LogicalTantale4mm->SetVisAttributes(blue);
-  LogicalTantale28mm->SetVisAttributes(blue);
+  LogicalTantale1_2->SetVisAttributes(blue);
+  LogicalTantale2_3->SetVisAttributes(blue);
+  LogicalTantale3_4->SetVisAttributes(blue);
+  LogicalTantale4_5->SetVisAttributes(blue);
+  LogicalTantale5_6->SetVisAttributes(blue);
+  LogicalTantale6_7->SetVisAttributes(blue);
   LogicalStackIP1->SetVisAttributes(gray_bis);
   LogicalStackIP2->SetVisAttributes(red_hot);
   LogicalStackIP3->SetVisAttributes(green);
@@ -218,7 +230,6 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
 
   G4RotationMatrix* stack_rot = new G4RotationMatrix;
   //G4double theta = -12*deg;
-  G4double theta = 0*deg;
   stack_rot->rotateZ(0*deg);
   stack_rot->rotateX(0*deg);
 
@@ -251,7 +262,8 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
 
       //les IP et les epaisseurs de Ta sont appliqués contre la couche d'alu du fond
       distance_au_centre = Stack_IP_pos_ini + Disque_alu_epaisseur + Cylindre_tantale_hauteur;
-      distance_au_centre -= Nombre_IP * epaisseur_IP + 28.*mm + 3.*4.*mm  + 2.*2.*mm + Bloc_mylar_hauteur/2.;
+      distance_au_centre -= Nombre_IP * epaisseur_IP + Epaisseur_tantale1_2 + Epaisseur_tantale2_3 + Epaisseur_tantale3_4 + Epaisseur_tantale4_5 + Epaisseur_tantale5_6 + Epaisseur_tantale6_7 + Bloc_mylar_hauteur/2.;
+
 
       Bloc_Mylar_phys = new G4PVPlacement(stack_rot,               // no rotation
         G4ThreeVector(0, 0, distance_au_centre), //position
@@ -266,6 +278,7 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
 
 
         for (int i=0;i<Nombre_IP;i++) {
+        //for (int i=0;i<1;i++) {
           G4String numero, nom;
           if (i==0) numero="1";
           else if (i==1) numero="2";
@@ -332,69 +345,111 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
                   nom="disque_ta_"+numero;
                   G4double epaisseur_tantale = 0.;
 
-                  if(i<2) {
-                    epaisseur_tantale = 2.*mm;
+                  if(i==0) {
+                    epaisseur_tantale = Epaisseur_tantale1_2;
                     distance_au_centre += epaisseur_tantale/2.;
                     physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
                       G4ThreeVector(0, 0, distance_au_centre), //position
-                      LogicalTantale2mm,     // its logical volume
+                      LogicalTantale1_2,     // its logical volume
                       nom,        // its name
                       LogicalWorld,      // its mother  volume
                       false,           // no boolean operations
                       0,
                       false);
                       distance_au_centre += epaisseur_tantale/2.;
-                    }//fin if(i<2)
+                    }
 
-                    if(i>=2 && i<5) {
-                      epaisseur_tantale = 4.*mm;
+                    if(i==1) {
+                      epaisseur_tantale = Epaisseur_tantale2_3;
                       distance_au_centre += epaisseur_tantale/2.;
                       physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
                         G4ThreeVector(0, 0, distance_au_centre), //position
-                        LogicalTantale4mm,     // its logical volume
+                        LogicalTantale2_3,     // its logical volume
                         nom,        // its name
                         LogicalWorld,      // its mother  volume
                         false,           // no boolean operations
                         0,
                         false);
                         distance_au_centre += epaisseur_tantale/2.;
-                      }//fin (i>=2 && i<5)
+                      }
 
-                      if(i==5) {
-                        epaisseur_tantale = 28.*mm;
+                      if(i==2) {
+                        epaisseur_tantale = Epaisseur_tantale3_4;
                         distance_au_centre += epaisseur_tantale/2.;
                         physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
                           G4ThreeVector(0, 0, distance_au_centre), //position
-                          LogicalTantale28mm,     // its logical volume
+                          LogicalTantale3_4,     // its logical volume
                           nom,        // its name
                           LogicalWorld,      // its mother  volume
                           false,           // no boolean operations
                           0,
                           false);
                           distance_au_centre += epaisseur_tantale/2.;
-                        }//fin (i==5)
-                      }
+                        }
+
+                        if(i==3) {
+                          epaisseur_tantale = Epaisseur_tantale4_5;
+                          distance_au_centre += epaisseur_tantale/2.;
+                          physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
+                            G4ThreeVector(0, 0, distance_au_centre), //position
+                            LogicalTantale4_5,     // its logical volume
+                            nom,        // its name
+                            LogicalWorld,      // its mother  volume
+                            false,           // no boolean operations
+                            0,
+                            false);
+                            distance_au_centre += epaisseur_tantale/2.;
+                          }
+
+                          if(i==4) {
+                            epaisseur_tantale = Epaisseur_tantale5_6;
+                            distance_au_centre += epaisseur_tantale/2.;
+                            physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
+                              G4ThreeVector(0, 0, distance_au_centre), //position
+                              LogicalTantale5_6,     // its logical volume
+                              nom,        // its name
+                              LogicalWorld,      // its mother  volume
+                              false,           // no boolean operations
+                              0,
+                              false);
+                              distance_au_centre += epaisseur_tantale/2.;
+                            }
+
+                            if(i==5) {
+                              epaisseur_tantale = Epaisseur_tantale6_7;
+                              distance_au_centre += epaisseur_tantale/2.;
+                              physiDisqueTa[i] = new G4PVPlacement(stack_rot,               // no rotation
+                                G4ThreeVector(0, 0, distance_au_centre), //position
+                                LogicalTantale6_7,     // its logical volume
+                                nom,        // its name
+                                LogicalWorld,      // its mother  volume
+                                false,           // no boolean operations
+                                0,
+                                false);
+                                distance_au_centre += epaisseur_tantale/2.;
+                              }
+                            }
 
 
-                      distance_au_centre += Disque_alu_epaisseur/2.;
+                            distance_au_centre += Disque_alu_epaisseur/2.;
 
-                      Cylindre_Disque_Alu_sortie = new G4PVPlacement(stack_rot,               // no rotation
-                        G4ThreeVector(0, 0, distance_au_centre), //position
-                        LogicalDisqueAlu,    // its logical volume
-                        "Disque_Alu_sortie",
-                        LogicalWorld,               // its mother  volume
-                        false,           // no boolean operations
-                        0,
-                        false);
+                            Cylindre_Disque_Alu_sortie = new G4PVPlacement(stack_rot,               // no rotation
+                              G4ThreeVector(0, 0, distance_au_centre), //position
+                              LogicalDisqueAlu,    // its logical volume
+                              "Disque_Alu_sortie",
+                              LogicalWorld,               // its mother  volume
+                              false,           // no boolean operations
+                              0,
+                              false);
 
-                        #else
+                              #else
 
-                        #endif
-
-
+                              #endif
 
 
 
-                        // Returns world with everything in it and all properties set
-                        return PhysicalWorld;
-                      }
+
+
+                              // Returns world with everything in it and all properties set
+                              return PhysicalWorld;
+                            }
