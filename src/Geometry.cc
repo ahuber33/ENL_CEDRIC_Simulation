@@ -311,9 +311,10 @@ G4LogicalVolume *Geometry::GetCylindreTantale(){
 G4LogicalVolume *Geometry::GetDisqueAlu(){
 
   Material = scintProp->GetMaterial("Aluminium");
+  //Material = scintProp->GetMaterial("Tantale");
 
   G4VSolid* solid = new G4Tubs("Disque_Alu",0., Rayon_cylindre_exterieur, Disque_alu_epaisseur/2.,0.,360.*deg);
-  LogicalVolume = new G4LogicalVolume(solid, Material,"Cylindre_Tantale");
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Disque_Alu");
 
   return LogicalVolume;
 }

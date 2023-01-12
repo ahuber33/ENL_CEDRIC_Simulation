@@ -18,7 +18,7 @@
 # - Simulation's working for Thomas's code !!!
 # - Need to work to implement some features on Trees (code adaptation)
 
-# Commit #2 [ENLCEDRICSim.0.1.0]
+# Commit #2 le 20/05/2022 [ENLCEDRICSim.0.1.0]
 # - Changement de la nature du code (même géométrie) mais sous base de ficgiers ROOT contenant des Tree
 # - Création de plusieurs variables permettant de débuguer correctement l'ensemble des interactions (e-/gamma/autres) par Stack
 # - Histo du code base gardé pour affichage énergie déposée

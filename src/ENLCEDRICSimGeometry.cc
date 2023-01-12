@@ -263,7 +263,7 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
       //les IP et les epaisseurs de Ta sont appliqués contre la couche d'alu du fond
       distance_au_centre = Stack_IP_pos_ini + Disque_alu_epaisseur + Cylindre_tantale_hauteur;
       distance_au_centre -= Nombre_IP * epaisseur_IP + Epaisseur_tantale1_2 + Epaisseur_tantale2_3 + Epaisseur_tantale3_4 + Epaisseur_tantale4_5 + Epaisseur_tantale5_6 + Epaisseur_tantale6_7 + Bloc_mylar_hauteur/2.;
-
+      distance_au_centre -= 12.7;
 
       Bloc_Mylar_phys = new G4PVPlacement(stack_rot,               // no rotation
         G4ThreeVector(0, 0, distance_au_centre), //position
@@ -431,7 +431,7 @@ G4VPhysicalVolume* ENLCEDRICSimGeometry::Construct( ){
                             }
 
 
-                            distance_au_centre += Disque_alu_epaisseur/2.;
+                            distance_au_centre += Disque_alu_epaisseur/2. +12.7;
 
                             Cylindre_Disque_Alu_sortie = new G4PVPlacement(stack_rot,               // no rotation
                               G4ThreeVector(0, 0, distance_au_centre), //position

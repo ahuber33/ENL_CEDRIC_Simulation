@@ -1,6 +1,6 @@
 /tracking/verbose 0
 /run/verbose 1
-/run/printProgress 1000000
+/run/printProgress 100000
 
 /run/initialize
 
@@ -11,24 +11,40 @@
 ### PART TO SIMULATE PARTICLE WITH GPS (no setgun) ###
 ######################################################
 /gps/number 1
-/gps/particle e-
+#/gps/particle gamma
 #/gps/ene/type Brem
-#/gps/ene/temp 116045250061.657 K
-#/gps/ene/min 100 keV
-#/gps/ene/max 30000 keV
+#/gps/ene/temp 1740678751 K
+#/gps/ene/min 10 keV
+#/gps/ene/max 10000 keV
 
-/gps/pos/type Point
-/gps/pos/centre 0.0 0.0 -100.0 mm
-/gps/direction 0.0 0.0 1.0
+#/gps/pos/type Point
+#/gps/pos/centre 0.0 0.0 -300.0 mm
+#/gps/direction 0.0 0.0 1.0
 #/gps/energy 40 keV
 #/gps/ang/type cos
 #/gps/ang/rot1 -1 0 0
-#/gps/ang/maxtheta 0.09 rad
+#/gps/ang/maxtheta 0.09 rad #0.09 for all & 0.03 for the little size
 
-/gps/ene/type Exp
-/gps/ene/min 1. keV
-/gps/ene/max 100. MeV
-/gps/ene/ezero 2.3 MeV
+
+/gps/particle e-
+/gps/pos/type Plane
+/gps/pos/shape Circle
+/gps/pos/centre 0.0 0.0 -300 mm
+/gps/direction 0.0 0.0 1.0
+/gps/pos/radius 7 mm
+/gps/energy 5 MeV
+
+#/gps/ene/type Exp
+#/gps/ene/min 10. keV
+#/gps/ene/max 200. MeV
+#/gps/ene/ezero 4.3 MeV
+
+
+#/gps/ene/type Lin
+#/gps/ene/min 1 MeV
+#/gps/ene/max 2 MeV
+#/gps/ene/gradient 0
+#/gps/ene/intercept 1
 
 
 #/gps/ene/type Arb

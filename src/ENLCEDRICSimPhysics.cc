@@ -43,7 +43,7 @@ ENLCEDRICSimPhysics::ENLCEDRICSimPhysics():  G4VModularPhysicsList()
   // Here used the default cut value you have typed in
 
   //defaultCutValue = 0.001*mm; //0.001
-  defaultCutValue = 100*nm; //0.001
+  defaultCutValue = 1*nm; //0.001
   //was 0.5*mm
 
   SetVerboseLevel(1);

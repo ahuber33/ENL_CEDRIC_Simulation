@@ -67,13 +67,13 @@ ENLCEDRICSimSteppingAction::ENLCEDRICSimSteppingAction(ENLCEDRICSimGeometry* Opt
     G4double EdepEff = 0;
     G4double Energy = track->GetKineticEnergy()/MeV ;
 
-    PosZ_Sensitive_IP1 = runaction->GetPosZSensitiveIP1();
-    PosZ_Sensitive_IP2 = runaction->GetPosZSensitiveIP2();
-    PosZ_Sensitive_IP3 = runaction->GetPosZSensitiveIP3();
-    PosZ_Sensitive_IP4 = runaction->GetPosZSensitiveIP4();
-    PosZ_Sensitive_IP5 = runaction->GetPosZSensitiveIP5();
-    PosZ_Sensitive_IP6 = runaction->GetPosZSensitiveIP6();
-    PosZ_Sensitive_IP7 = runaction->GetPosZSensitiveIP7();
+    PosZ_Sensitive_IP1 = runaction->GetPosZSensitiveIP1()-12.7;
+    PosZ_Sensitive_IP2 = runaction->GetPosZSensitiveIP2()-12.7;
+    PosZ_Sensitive_IP3 = runaction->GetPosZSensitiveIP3()-12.7;
+    PosZ_Sensitive_IP4 = runaction->GetPosZSensitiveIP4()-12.7;
+    PosZ_Sensitive_IP5 = runaction->GetPosZSensitiveIP5()-12.7;
+    PosZ_Sensitive_IP6 = runaction->GetPosZSensitiveIP6()-12.7;
+    PosZ_Sensitive_IP7 = runaction->GetPosZSensitiveIP7()-12.7;
 
     Labs = runaction->GetLabs();
 
