@@ -108,6 +108,9 @@ void ENLCEDRICSimEventAction::BeginOfEventAction(const G4Event* evt){
   Statistics.EffectiveDepositE_Gamma_Stack7 = 0;
   Statistics.X_Position_Gamma_Stack7 = 0;
   Statistics.Y_Position_Gamma_Stack7 = 0;
+  Statistics.compteur=0;
+  Statistics.EBremCreation.clear();
+  Statistics.EBremExit.clear();
 
   flag_good_event=false;
 
@@ -141,6 +144,6 @@ void ENLCEDRICSimEventAction::EndOfEventAction(const G4Event* evt){
     Energie+=DepositE_Gamma_Stack[i];
   }
 
-    if(flag_good_event==true)
+    //if(flag_good_event==true)
     runac->UpdateStatistics(Statistics);
 }

@@ -160,7 +160,7 @@ void FillMatrice()
       cout << "Entries [" << filename << "] = " << Entries << endl;
       PSL = Histo_PSL(filename);
       //PSL->Scale(Rapport_Surface/Entries);
-      PSL->Scale(Rapport_Surface/Entries);
+      PSL->Scale(Rapport_Surface/(Entries));
       FillMatriceLine(Matrice, PSL, i+1);
       PSL->Reset();
     }
@@ -193,7 +193,7 @@ void FillMatriceHP()
       //      Entries = NumberOfEntries(filename);
       cout << "Entries [" << filename << "] = " << Entries << endl;
       PSL = Histo_PSL(filename);
-      PSL->Scale(Rapport_Surface/Entries);
+      PSL->Scale(Rapport_Surface/(Entries));
       FillMatriceLine(MatriceHP, PSL, i+1);
       PSL->Reset();
     }
@@ -575,7 +575,7 @@ TGraphAsymmErrors* FOM_Spectro(TGraph* alpha, int ddl, float Emin, float Emax, f
       ey_up[i] = Largeur.at(1) - y[i];
       
       num+=step;
-     }
+    }
 
     auto ga = new TGraphAsymmErrors(npoints, x, y, ex_low, ex_up, ey_low, ey_up);
 
@@ -587,7 +587,7 @@ TGraphAsymmErrors* FOM_Spectro(TGraph* alpha, int ddl, float Emin, float Emax, f
 Double_t fitFunc(float x, Double_t* par)
 {
   Double_t PDF =0.0;
-  PDF = exp(par[0]-(x/1)/par[1]);
+  PDF = par[0]*exp(-(x/1)/par[1]);
   // cout << "x = " << x << endl;
   // cout << "par 0 =" << par[0] << endl;
   // cout << "par 1 =" << par[1] << endl;
@@ -601,7 +601,7 @@ Double_t fitFunc(float x, Double_t* par)
 Double_t fitFuncHP(float x, Double_t* par)
 {
   Double_t PDF =0.0;
-  PDF = exp(par[0]-(x/10)/par[1]);
+  PDF = 0.1*par[0]*exp(-(x/10)/par[1]);
   // cout << "x = " << x << endl;
   // cout << "par 0 =" << par[0] << endl;
   // cout << "par 1 =" << par[1] << endl;

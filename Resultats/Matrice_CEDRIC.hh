@@ -99,8 +99,8 @@ TH1D* Histo_PSL(const char* filename)
   file->Close();
   //delete file;
 
-  return PSL_REF;
-  //return Edep_REF;
+  //return PSL_REF;
+  return Edep_REF;
 
 }
 
@@ -137,6 +137,7 @@ void FillMatrice()
   TFile* file;
   Matrice->Reset();
   float Rapport_Surface = 0.853; //Cone émis avec un angle de 0.09rad à une distance de 300mm du cylindre -> rayon tot = 27.073mm et rayon cylindre =25 mm
+  //float Rapport_Surface = 1;
 
   for (int i=0; i<=200; i++)
     {
@@ -151,7 +152,7 @@ void FillMatrice()
       //      Entries = NumberOfEntries(filename);
       cout << "Entries [" << filename << "] = " << Entries << endl;
       PSL = Histo_PSL(filename);
-      PSL->Scale(Rapport_Surface/Entries);
+      PSL->Scale(Rapport_Surface/(Entries));
       FillMatriceLine(Matrice, PSL, i+1);
       PSL->Reset();
     }
@@ -168,6 +169,7 @@ void FillMatriceHP()
   MatriceHP->Reset();
   float a;
   float Rapport_Surface = 0.853; //Cone émis avec un angle de 0.09rad à une distance de 300mm du cylindre -> rayon tot = 27.073mm et rayon cylindre =25 mm
+  //float Rapport_Surface = 1; //Cone émis avec un angle de 0.09rad à une distance de 300mm du cylindre -> rayon tot = 27.073mm et rayon cylindre =25 mm
 
   for (float i=0; i<=100; i++)
     {
@@ -184,7 +186,7 @@ void FillMatriceHP()
       //      Entries = NumberOfEntries(filename);
       cout << "Entries [" << filename << "] = " << Entries << endl;
       PSL = Histo_PSL(filename);
-      PSL->Scale(Rapport_Surface/Entries);
+      PSL->Scale(Rapport_Surface/(Entries));
       FillMatriceLine(MatriceHP, PSL, i+1);
       PSL->Reset();
     }
@@ -574,7 +576,7 @@ TGraphAsymmErrors* FOM_Spectro(TGraph* alpha, int ddl, float Emin, float Emax, f
 Double_t fitFunc(float x, Double_t* par)
 {
   Double_t PDF =0.0;
-  PDF = exp(par[0]-(x/1)/par[1]);
+  PDF = par[0]*exp(-(x/1)/par[1]);
   // cout << "x = " << x << endl;
   // cout << "par 0 =" << par[0] << endl;
   // cout << "par 1 =" << par[1] << endl;
@@ -588,7 +590,7 @@ Double_t fitFunc(float x, Double_t* par)
 Double_t fitFuncHP(float x, Double_t* par)
 {
   Double_t PDF =0.0;
-  PDF = exp(par[0]-(x/10)/par[1]);
+  PDF = 0.1*par[0]*exp(-(x/10)/par[1]);
   // cout << "x = " << x << endl;
   // cout << "par 0 =" << par[0] << endl;
   // cout << "par 1 =" << par[1] << endl;

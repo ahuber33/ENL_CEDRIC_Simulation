@@ -318,3 +318,27 @@ G4LogicalVolume *Geometry::GetDisqueAlu(){
 
   return LogicalVolume;
 }
+
+
+
+G4LogicalVolume *Geometry::GetCylindrePlomb(){
+
+  Material = scintProp->GetMaterial("Plomb");
+
+  G4VSolid* solid = new G4Tubs("Cylindre_Plomb", 0, Rayon_cylindre_interieur, 12.7/2.,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Cylindre_Plomb");
+
+  return LogicalVolume;
+}
+
+
+
+G4LogicalVolume *Geometry::GetPlaqueTantale(){
+
+  Material = scintProp->GetMaterial("Tantale");
+
+  G4VSolid* solid = new G4Tubs("Plaque_Tantale", 0, 1*mm, 2.3/2*mm,0.,360.*deg);
+  LogicalVolume = new G4LogicalVolume(solid, Material,"Plaque_Tantale");
+
+  return LogicalVolume;
+}
