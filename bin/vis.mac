@@ -44,22 +44,30 @@
 
 
 # PART TO SIMULATE 1 MEV ELECTRON !!!!!!!!
-/gps/particle geantino
+/gps/particle e-
 #/gps/particle e-
-#/gps/pos/type Point
-#/gps/pos/centre 0.0 0.0 -300 mm
-/gps/energy 100.0 keV
-#/gps/direction 0.0 0.0 1.0
+/gps/pos/type Point
+/gps/pos/centre 0.0 0.0 -300 mm
+/gps/energy 10000.0 keV
+/gps/direction 0.0 0.0 1.0
 #/gps/ang/type cos
 #/gps/ang/rot1 -1 0 0
 #/gps/ang/maxtheta 0.03 rad
 
-/gps/pos/type Plane
-/gps/pos/shape Circle
-/gps/pos/centre 0.0 0.0 -300 mm
-/gps/direction 0.0 0.0 1.0
-/gps/pos/radius 25 mm
+#/gps/pos/type Plane
+#/gps/pos/shape Circle
+#/gps/pos/centre 0.0 0.0 -300 mm
+#/gps/direction 0.0 0.0 1.0
+#/gps/pos/radius 25 mm
 
+
+#/gps/pos/type Plane
+#/gps/pos/shape Rectangle
+#/gps/pos/centre 0.0 -56.7 -266.5 mm
+#/gps/pos/halfx 1.9 mm
+#/gps/pos/halfy 10.5 mm
+#/gps/pos/halfz 1.5 mm
+#/gps/ang/type iso
 
 
 #/gps/ene/type Arb
@@ -72,4 +80,4 @@
 #/grdm/nucleusLimits 60 60 27 27
 
 
-/run/beamOn 500
+/run/beamOn 1

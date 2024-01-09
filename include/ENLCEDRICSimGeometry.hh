@@ -70,7 +70,9 @@ private:
   G4LogicalVolume *LogicalStackIP4;
   G4LogicalVolume *LogicalDisqueAlu;
   G4LogicalVolume *LogicalCylindreTantale;
+  G4LogicalVolume *LogicalCylindrePlomb;
   G4LogicalVolume *LogicalBlocMylar;
+  G4LogicalVolume *LogicalPlaqueTantale;
 
 
 
@@ -84,8 +86,10 @@ private:
   G4VPhysicalVolume* physiDisqueTa[10];
   G4VPhysicalVolume* Bloc_Mylar_phys;
   G4VPhysicalVolume* Cylindre_Tantale_phys;
+  G4VPhysicalVolume* Cylindre_Plomb_phys;
   G4VPhysicalVolume* Cylindre_Disque_Alu_entree;
   G4VPhysicalVolume* Cylindre_Disque_Alu_sortie;
+  G4VPhysicalVolume* PhysicalPlaqueTantale;
 
   G4double Rayon_cylindre_interieur;
   G4double Rayon_cylindre_exterieur;

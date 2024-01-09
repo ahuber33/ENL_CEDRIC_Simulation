@@ -38,7 +38,9 @@ public:
   G4LogicalVolume *GetStackIP4();
   G4LogicalVolume *GetBlocMylar();
   G4LogicalVolume *GetCylindreTantale();
+  G4LogicalVolume *GetCylindrePlomb();
   G4LogicalVolume *GetDisqueAlu();
+  G4LogicalVolume *GetPlaqueTantale();
 
   G4double GetRayonCylindreInterieur(){return Rayon_cylindre_interieur;}
   G4double GetRayonCylindreExterieur(){return Rayon_cylindre_exterieur;}

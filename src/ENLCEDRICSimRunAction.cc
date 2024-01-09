@@ -118,6 +118,9 @@ void ENLCEDRICSimRunAction::BeginOfRunAction(const G4Run* aRun){
   // RunBranch = IP->Branch("EffectiveDepositE_Gamma_Stack7", &Stats.EffectiveDepositE_Gamma_Stack7, "EffectiveDepositE_Gamma_Stack7/F");
   // RunBranch = IP->Branch("X_Position_Gamma_Stack7", &Stats.X_Position_Gamma_Stack7, "X_Position_Gamma_Stack7/F");
   // RunBranch = IP->Branch("Y_Position_Gamma_Stack7", &Stats.Y_Position_Gamma_Stack7, "Y_Position_Gamma_Stack7/F");
+  RunBranch = IP->Branch("Compteur", &Stats.compteur, "Compteur/I");
+  RunBranch = IP->Branch("EBremCreation", "vector<float>", &Stats.EBremCreation);
+  RunBranch = IP->Branch("EBremExit", "vector<float>", &Stats.EBremExit);
 
 
   //set the random seed to the CPU clock

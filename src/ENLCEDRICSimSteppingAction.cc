@@ -60,7 +60,7 @@ ENLCEDRICSimSteppingAction::ENLCEDRICSimSteppingAction(ENLCEDRICSimGeometry* Opt
 
     G4double x = aStep->GetTrack()->GetPosition().x();
     G4double y = aStep->GetTrack()->GetPosition().y();
-    // G4double z = aStep->GetTrack()->GetPosition().z();
+    G4double z = aStep->GetTrack()->GetPosition().z();
     // G4double r = sqrt(x*x + y*y);
     //G4double my_dist_after = track->GetTrackLength()/mm;
     G4double Edep = aStep->GetTotalEnergyDeposit()/keV;
@@ -76,6 +76,12 @@ ENLCEDRICSimSteppingAction::ENLCEDRICSimSteppingAction(ENLCEDRICSimGeometry* Opt
     PosZ_Sensitive_IP7 = runaction->GetPosZSensitiveIP7()-12.7;
 
     Labs = runaction->GetLabs();
+
+    if(PartName == "geantino" && PreVolumName == "Disque_Alu_entree")
+    {
+      eventaction->ActiveCompteur();
+      //G4cout << "Compteur = " << eventaction->GetCompteur() << G4endl;
+    }
 
     //#######################################################################
     //#######################################################################
@@ -455,5 +461,24 @@ ENLCEDRICSimSteppingAction::ENLCEDRICSimSteppingAction(ENLCEDRICSimGeometry* Opt
       }
     }//fin for
 
+
+
+
+
+    if(Parent_ID>0)
+    {
+      if(track->GetCreatorProcess()->GetProcessName() == "eBrem")
+      {
+        if(StepNo==1)
+        {
+          //G4cout << "Brem with E = " << Energy << G4endl;
+          eventaction->FillEBremCreation(Energy);
+        }
+        if(VolumName=="PhysicalWorld")
+        {
+          eventaction->FillEBremExit(Energy);
+        }
+      }
+    }
 
   }

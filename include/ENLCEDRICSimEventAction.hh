@@ -91,6 +91,9 @@ struct RunTally {
   float  EffectiveDepositE_Gamma_Stack7;
   float  X_Position_Gamma_Stack7;
   float  Y_Position_Gamma_Stack7;
+  int compteur;
+  std::vector<float> EBremCreation;
+  std::vector<float> EBremExit;
 
 
   inline int operator ==(const RunTally& right) const
@@ -193,6 +196,10 @@ public:
   void ActiveFlagGoodEvent(){flag_good_event=true;}
   void ActivePositionGammaFlag(G4int num_IP) {gamma_flag_position[num_IP]=true;}
   G4bool GetPositionGammaFlag(G4int num_IP) {return gamma_flag_position[num_IP];}
+  void ActiveCompteur(){Statistics.compteur++;}
+  G4int GetCompteur(){return Statistics.compteur;}
+  void FillEBremCreation(G4double a){Statistics.EBremCreation.push_back(a);}
+  void FillEBremExit(G4double a){Statistics.EBremExit.push_back(a);}
 
   //void AddEdep(G4float edep){Statistics.Deposit+=edep;}
   //void SetIncidentE(G4float e){Statistics.IncidentE =e;}

@@ -32,3 +32,7 @@
 # - Lecture du fichier de config dans Geomety.cc et RunAction afin de pouvoir appeler les fonctions défini dans le RunAction au niveau du Steppping Action. Doublon donc pas optimale. Y réfléchir par la suite pour enlever ce doublon.
 # - Vérifications de la bonne tenue du code avec des comparaisons de données e-/gamma/protons sur une IP seule
 # - Nécessité de pousser encore les inverstigations sur la réponse du stack.
+
+# Commit #3 le 09/01/2024 [ENLCEDRICSim.0.2.0]
+# - Passage du code sur la version 11.2.0 de GEANT4
+# - Passage de Atom vers Visual Code Studio avec notamment création d'une branche save permettant de push les changements d'une journée avant demerge sur la branche principale
